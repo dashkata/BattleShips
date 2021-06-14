@@ -1,5 +1,3 @@
-// #include <stdio.h>
-
 #include <stdio.h>
 void board(){
     char boardArray[11][11];
