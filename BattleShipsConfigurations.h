@@ -1,7 +1,14 @@
+//vsichko e v maina battleships.c tva ne go gledaite 
+
 #include <stdio.h>
 void board(){
+    
+    
     char boardArray[11][11];
+    
     for(int i = 0; i < 11 ;i ++){
+        int ok = 0;
+    
         if(i != 10){
             printf(" ");
         }
@@ -18,7 +25,16 @@ void board(){
             }else if(j == 0) {
                 printf("%d|", i);
             }else{
-                printf(" |");
+                
+               
+                    printf(" |");
+
+                 
+                    
+                
+                       
+                  
+                
             }
 
         }
