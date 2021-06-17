@@ -1,1 +1,1 @@
-hip.y != 1 && ship.x != 1
+et_ship(board,ship);
