@@ -125,7 +125,7 @@ int main()
         
     };
 
-    print_config(board, 2);
+    print_config(board, 1);
 
     //char turns[100];
     int game = start_game();

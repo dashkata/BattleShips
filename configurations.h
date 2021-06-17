@@ -56,11 +56,16 @@ int validation_check(char board[11][11], ships ship){
                     case 'U':
                         //this checks if a ship is too big and will go out of the board
                         if(ship.y - ship.size > 0){
+                            if(board[ship.x + 1][ship.y + 1] == 'X' || board[ship.x - 1][ship.y + 1] == 'X' || board[ship.x - 1][ship.y - ship.size] == 'X' || board[ship.x + 1][ship.y - ship.size] == 'X'){
+                                printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                return 0;
+                            }else{
                             //this checks if there is ship everytime we go to put a new 1 from the current ship
-                            for(int i = 0; i < ship.size; i++){
-                                if(board[ship.y - i][ship.x] == 'X'|| board[ship.y - i][ship.x - 1] == 'X' || board[ship.y - i][ship.x + 1] == 'X'){
-                                    printf("There is a ship near the one you are trying to put right now, try again!\n");
-                                    return 0;
+                                for(int i = 0; i < ship.size; i++){
+                                    if(board[ship.y - i][ship.x] == 'X'|| board[ship.y - i][ship.x - 1] == 'X' || board[ship.y - i][ship.x + 1] == 'X'){
+                                        printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                        return 0;
+                                    }
                                 }
                             }
                         }else{
@@ -80,11 +85,16 @@ int validation_check(char board[11][11], ships ship){
                     //this checks if a ship is too big and will go out of the board
                         if(ship.y + ship.size <= 11){
                             //this checks if there is ship everytime we go to put a new 1 from the current ship
-                            for(int i = 0; i < ship.size; i++){
-                                if(board[ship.y + i][ship.x] == 'X'|| board[ship.y + i][ship.x - 1] == 'X' || board[ship.y + i][ship.x + 1] == 'X'){
-                                    printf("There is a ship near the one you are trying to put right now, try again!\n");
-                                    return 0;
-                                    
+                            if(board[ship.x + 1][ship.y - 1] == 'X' || board[ship.x - 1][ship.y - 1] == 'X' || board[ship.x - 1][ship.y + ship.size] == 'X' || board[ship.x + 1][ship.y + ship.size] == 'X'){
+                                printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                return 0;
+                            }else{
+                                for(int i = 0; i < ship.size; i++){
+                                    if(board[ship.y + i][ship.x] == 'X'|| board[ship.y + i][ship.x - 1] == 'X' || board[ship.y + i][ship.x + 1] == 'X'){
+                                        printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                        return 0;
+                                        
+                                    }
                                 }
                             }
                         }else{
@@ -97,15 +107,22 @@ int validation_check(char board[11][11], ships ship){
                 
                     case 'R':
                         //this checks if a ship is too big and will go out of the board
+                        
 
                         if(ship.x + ship.size <= 11){
-                            //this checks if there is ship everytime we go to put a new 1 from the current ship
-                            for(int i = 0; i < ship.size; i++){
-                                if(board[ship.y][ship.x + i] == 'X'|| board[ship.y + 1][ship.x + i] == 'X' || board[ship.y - 1][ship.x + i] == 'X'){
-                                    printf("There is a ship near the one you are trying to put right now, try again!\n");
-                                    return 0;
-                                    
-                                }   
+                            if(board[ship.x - 1][ship.y + 1] == 'X' || board[ship.x - 1][ship.y - 1] == 'X' || board[ship.x + ship.size][ship.y - 1] == 'X' || board[ship.x + ship.size][ship.y + 1] == 'X'){
+                                printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                return 0;
+                            }else{
+                            
+                                //this checks if there is ship everytime we go to put a new 1 from the current ship
+                                for(int i = 0; i < ship.size; i++){
+                                    if(board[ship.y][ship.x + i] == 'X'|| board[ship.y + 1][ship.x + i] == 'X' || board[ship.y - 1][ship.x + i] == 'X'){
+                                        printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                        return 0;
+                                        
+                                    }   
+                                }
                             } 
                         }else{
                             printf("Ship is too big to put it here!\n");
@@ -116,15 +133,21 @@ int validation_check(char board[11][11], ships ship){
                     
                     case 'L':
                     //this checks if a ship is too big and will go out of the board
+
                     
                         if(ship.x - ship.size > 0){
-                            //this checks if there is ship everytime we go to put a new 1 from the current ship
-                            for(int i = 0; i < ship.size; i++){
-                                if(board[ship.y][ship.x - i] == 'X'|| board[ship.y + 1][ship.x - i] == 'X' || board[ship.y - 1][ship.x - i] == 'X'){
-                                    printf("There is a ship near the one you are trying to put right now, try again!\n");
-                                    return 0;
-                                    
-                                }   
+                            if(board[ship.x + 1][ship.y + 1] == 'X' || board[ship.x + 1][ship.y - 1] == 'X' || board[ship.x - ship.size][ship.y - 1] == 'X' || board[ship.x - ship.size][ship.y + 1] == 'X'){
+                                printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                return 0;
+                            }else{
+                                //this checks if there is ship everytime we go to put a new 1 from the current ship
+                                for(int i = 0; i < ship.size; i++){
+                                    if(board[ship.y][ship.x - i] == 'X'|| board[ship.y + 1][ship.x - i] == 'X' || board[ship.y - 1][ship.x - i] == 'X'){
+                                        printf("There is a ship near the one you are trying to put right now, try again!\n");
+                                        return 0;
+                                        
+                                    }   
+                                }
                             }
                         }else{
                             
@@ -224,20 +247,7 @@ int configurations(char board[11][11], int config_number){
         file_selection(board, file);
 
     }
-    /*
-    switch (config_number){
-        case 1:
-            FILE *file = fopen("config1.txt", "r");
-            file_selection(board, file);
-            
-            break;
-        case 2:
-            FILE *file = fopen("config2.txt", "r");
-            file_selection(board, file);
-            break;
-
-    }
-    */
+   
 
     
     return 0;
