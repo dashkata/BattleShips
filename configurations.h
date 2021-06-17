@@ -197,22 +197,47 @@ void set_ship(char board[11][11],ships ship){
     
 
 }
+int file_selection(char board[11][11], FILE *file){
+        if(file == NULL){
+                return 1;
+            }
+            char buffer[200];
+            fgets(buffer, 200, file);
+            for(int i = 0; i < 10; i++){
+                ships ship;
+                sscanf(buffer, "%d" "%d" "%d" "%s", &ship.x, &ship.y, &ship.size, &ship.dir);
+                
+                set_ship(board,ship);
+                fgets(buffer, 200, file);
+            }
+            fclose(file);
+            return 0;
+}
 
-int configurations(char board[11][11]){
-    FILE *file = fopen("config1.txt", "r");
-    if(file == NULL){
-        return 1;
+int configurations(char board[11][11], int config_number){
+    if(config_number == 1){
+        FILE *file = fopen("config1.txt", "r");
+        file_selection(board, file);
+
+    }else if(config_number == 2){
+         FILE *file = fopen("config2.txt", "r");
+        file_selection(board, file);
+
     }
-    char buffer[200];
-    fgets(buffer, 200, file);
-    for(int i = 0; i < 10; i++){
-        ships ship;
-        sscanf(buffer, "%d" "%d" "%d" "%s", &ship.x, &ship.y, &ship.size, &ship.dir);
-        
-        set_ship(board,ship);
-        fgets(buffer, 200, file);
+    /*
+    switch (config_number){
+        case 1:
+            FILE *file = fopen("config1.txt", "r");
+            file_selection(board, file);
+            
+            break;
+        case 2:
+            FILE *file = fopen("config2.txt", "r");
+            file_selection(board, file);
+            break;
+
     }
-    fclose(file);
+    */
 
     
     return 0;
@@ -220,8 +245,8 @@ int configurations(char board[11][11]){
 
 
 
-void print_config(char board[11][11]){
+void print_config(char board[11][11], int config_number){
     
-    configurations(board);
+    configurations(board, config_number);
     print_board(board);
 }
