@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "configurations.h"
 
 int start_game()
 {
@@ -109,11 +110,28 @@ void strike_success(int success)
 
 int main()
 {
-    char turns[100];
+    char board[11][11] = {
+        {' ','A','B','C','D','E','F','G','H','I','J'},
+        {'1','O','O','O','O','O','O','O','O','O','O'},
+        {'2','O','O','O','O','O','O','O','O','O','O'},
+        {'3','O','O','O','O','O','O','O','O','O','O'},
+        {'4','O','O','O','O','O','O','O','O','O','O'},
+        {'5','O','O','O','O','O','O','O','O','O','O'},
+        {'6','O','O','O','O','O','O','O','O','O','O'},
+        {'7','O','O','O','O','O','O','O','O','O','O'},
+        {'8','O','O','O','O','O','O','O','O','O','O'},
+        {'9','O','O','O','O','O','O','O','O','O','O'},
+        {'0','O','O','O','O','O','O','O','O','O','O'},
+        
+    };
+
+    print_config(board);
+
+    //char turns[100];
     int game = start_game();
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
     int str_succ = strike(/*&turns*/);
-    //strike_success(str_succ);
+    strike_success(str_succ);
 
     return 0;
 }

@@ -212,7 +212,7 @@ int configurations(char board[11][11]){
         set_ship(board,ship);
         fgets(buffer, 200, file);
     }
-    fclose;
+    fclose(file);
 
     
     return 0;
@@ -220,25 +220,8 @@ int configurations(char board[11][11]){
 
 
 
-int main(){
-    char board[11][11] = {
-        {' ','A','B','C','D','E','F','G','H','I','J'},
-        {'1','O','O','O','O','O','O','O','O','O','O'},
-        {'2','O','O','O','O','O','O','O','O','O','O'},
-        {'3','O','O','O','O','O','O','O','O','O','O'},
-        {'4','O','O','O','O','O','O','O','O','O','O'},
-        {'5','O','O','O','O','O','O','O','O','O','O'},
-        {'6','O','O','O','O','O','O','O','O','O','O'},
-        {'7','O','O','O','O','O','O','O','O','O','O'},
-        {'8','O','O','O','O','O','O','O','O','O','O'},
-        {'9','O','O','O','O','O','O','O','O','O','O'},
-        {'0','O','O','O','O','O','O','O','O','O','O'},
-        
-    };
+void print_config(char board[11][11]){
     
     configurations(board);
     print_board(board);
-    
-    
-    return 0;
 }
