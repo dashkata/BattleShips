@@ -2,7 +2,13 @@
 #include <stdlib.h>
 #include "configurations.h"
 
-int start_game()
+struct player
+{
+    char board[11][11];
+    char name[15];
+};
+
+int start_game(struct player* player1, struct player* player2)
 {
     int game_type = 0;
     int board = 0;
@@ -12,7 +18,13 @@ int start_game()
     switch(game_type)
     {
         case 1: //da si izbere kartata
-            printf("You chose to play 1vs1! Next step:\n1. Place your ships manually\n2. Use a randomly selected board\n");
+            printf("\nYou chose to play 1vs1! Let's begin!\n");
+            printf("Player 1: ");
+            scanf("%s", player1->name);
+            printf("Player 2: ");
+            scanf("%s", player2->name);
+
+            printf("\nNext step:\n1. Place your ships manually\n2. Use a randomly selected board\n");
             scanf("%d", &board);
             switch(board){
                 case 1: 
@@ -23,12 +35,16 @@ int start_game()
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
-                    start_game(&game_type);
+                    start_game(player1, player2);
                     break;
             }
             break;
         case 2: //zaredi random karta za bota i dai da si izbere karta
-            printf("You chose to play singleplayer! Next step:\n1. Place your ships manually\n2. Use a randomly selected board\n");
+
+            printf("\nYou chose to play singleplayer! Let's begin!\nYour name:");
+            scanf("%s", player1->name);
+
+            printf("\nNext step:\n1. Place your ships manually\n2. Use a randomly selected board\n");
             scanf("%d", &board);
             switch(board){
                 case 1: 
@@ -39,13 +55,13 @@ int start_game()
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
-                    start_game(&game_type);
+                    start_game(player1, player2);
                     break;
             }
             break;
         default:
             printf("\nInvalid decision! Please try again!\n");
-            start_game(&game_type);
+            start_game(player1, player2);
             break;
     }
 
@@ -80,7 +96,7 @@ int strike(/*char* board, char* turns*/)
                 case 2: // polzva starata kletka i izbira posoka
                     break;
                 default:
-                    printf("\nUnfortunately you chose something not valid so you need to try again!\n");
+                    printf("\nUnfortunately you chose something invalid so you need to try again!\n");
                     strike();
                     break;
             }
@@ -128,10 +144,14 @@ int main()
     print_config(board);
 
     //char turns[100];
-    int game = start_game();
+    struct player player1;
+    struct player player2;
+    int game = start_game(&player1, &player2);
+    printf("%s, %s", player1.name, player2.name);
+
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
-    int str_succ = strike(/*&turns*/);
-    strike_success(str_succ);
+    //int str_succ = strike(/*&turns*/);
+    //strike_success(str_succ);
 
     return 0;
 }
