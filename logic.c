@@ -141,7 +141,7 @@ int main()
         
     };
 
-    print_config(board);
+    print_config(board, 1);
 
     //char turns[100];
     struct player player1;

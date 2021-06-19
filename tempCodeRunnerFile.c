@@ -1,1 +1,1 @@
-et_ship(board,ship);
+O
