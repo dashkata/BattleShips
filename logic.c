@@ -31,10 +31,10 @@ int start_game(struct player* player1, struct player* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    // sam gi podrejda
+                    // sam gi podrejda - Bobo
                     break;
                 case 2: 
-                    // random karta
+                    // random karta - Chocho
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
@@ -51,10 +51,10 @@ int start_game(struct player* player1, struct player* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    // sam gi podrejda
+                    // sam gi podrejda - Bobo
                     break;
                 case 2: 
-                    // random karta
+                    // random karta - Chocho
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
@@ -87,11 +87,11 @@ int strike(struct player* player1, struct player* player2 /*char* turns*/)
     struct player* turn = malloc(sizeof(struct player));
     if(counter % 2 == 0){
         strcpy(turn->name, player2->name);
-        strcpy(turn->board, player2->board);
+        //strcpy(turn->board, player2->board);
         //puts(turn->name);
    }else{
         strcpy(turn->name, player1->name);
-        strcpy(turn->board, player1->board);
+        //strcpy(turn->board, player1->board);
    }
 
 
@@ -113,7 +113,7 @@ int strike(struct player* player1, struct player* player2 /*char* turns*/)
                     printf("%s", shot);
                     break;
                 case 2: // polzva starata kletka i izbira posoka
-                    printf("OK, your previous shot was at neshto.\nChoose a direction to shoot! (Type L for left, R for right, U for up and D for down)\n");
+                    printf("OK %s, your previous shot was at neshto.\nChoose a direction to shoot! (Type L for left, R for right, U for up and D for down)\n", turn->name);
                     scanf("%s", direction);
                     printf("%s", direction);
                     break;
@@ -142,8 +142,7 @@ void strike_success(int success, struct player* player1, struct player* player2)
     }
     else{
         printf("\nSorry mate, you didn't hit any of your opponent's ships :(\n");
-        counter++;
-        // dava na sledvashtiq igrach da igrae
+        counter++; // dava na sledvashtiq igrach da igrae
     }
 }
 
