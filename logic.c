@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "configurations.h"
+#include "user_insert_ships.h"
 
 struct player
 {
@@ -31,10 +32,10 @@ int start_game(struct player* player1, struct player* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    // sam gi podrejda - Bobo
+                    // sam gi podrejda
                     break;
                 case 2: 
-                    // random karta - Chocho
+                    // random karta
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
@@ -51,10 +52,10 @@ int start_game(struct player* player1, struct player* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    // sam gi podrejda - Bobo
+                    // sam gi podrejda
                     break;
                 case 2: 
-                    // random karta - Chocho
+                    // random karta
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
@@ -87,11 +88,11 @@ int strike(struct player* player1, struct player* player2 /*char* turns*/)
     struct player* turn = malloc(sizeof(struct player));
     if(counter % 2 == 0){
         strcpy(turn->name, player2->name);
-        //strcpy(turn->board, player2->board);
+        strcpy(turn->board, player2->board);
         //puts(turn->name);
    }else{
         strcpy(turn->name, player1->name);
-        //strcpy(turn->board, player1->board);
+        strcpy(turn->board, player1->board);
    }
 
 
@@ -113,7 +114,7 @@ int strike(struct player* player1, struct player* player2 /*char* turns*/)
                     printf("%s", shot);
                     break;
                 case 2: // polzva starata kletka i izbira posoka
-                    printf("OK %s, your previous shot was at neshto.\nChoose a direction to shoot! (Type L for left, R for right, U for up and D for down)\n", turn->name);
+                    printf("OK, your previous shot was at neshto.\nChoose a direction to shoot! (Type L for left, R for right, U for up and D for down)\n");
                     scanf("%s", direction);
                     printf("%s", direction);
                     break;
@@ -142,7 +143,8 @@ void strike_success(int success, struct player* player1, struct player* player2)
     }
     else{
         printf("\nSorry mate, you didn't hit any of your opponent's ships :(\n");
-        counter++; // dava na sledvashtiq igrach da igrae
+        counter++;
+        // dava na sledvashtiq igrach da igrae
     }
 }
 
@@ -174,6 +176,8 @@ int main()
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
     int str_succ = strike(&player1, &player2/*&turns*/);
     strike_success(str_succ, &player1, &player2);
+
+    ships ship;
 
     return 0;
 }
