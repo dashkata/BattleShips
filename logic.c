@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "user_insert_ships.h"
+//#include "singleplayer.h"
 
 struct player_t
 {
@@ -60,7 +61,10 @@ int start_game(struct player_t* player1, struct player_t* player2)
                     insert_ships(player2->board);
                     break;
                 case 2: 
-                    // random karta - chocho
+                    //map_generator(player1->board);
+                    printf("\nWe generated a map for %s\n", player1->name);
+                    //map_generator(player2->board);
+                    printf("\nWe also generated a map for %s\n", player2->name);
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");
@@ -79,9 +83,15 @@ int start_game(struct player_t* player1, struct player_t* player2)
                 case 1: 
                     printf("\n%s's board:\n", player1->name);
                     insert_ships(player1->board);
+                    //map_generator(player2->board);
+                    printf("\nWe generated a map for the bot\n");
                     break;
                 case 2: 
                     // random karta - chocho
+                    //map_generator(player1->board);
+                    printf("\nWe generated a map for %s\n", player1->name);
+                    //map_generator(player2->board);
+                    printf("\nWe also generated a map for the bot\n");
                     break;
                 default: 
                     printf("\nInvalid decision! Please try again!\n");

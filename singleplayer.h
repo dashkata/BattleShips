@@ -4,7 +4,7 @@
 #include "configurations.h"
 
  
-int map_generator(){
+int map_generator(struct player_t* player){
     int i;
     time_t t;
     
