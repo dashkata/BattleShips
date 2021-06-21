@@ -44,7 +44,15 @@ int validation_check(char board[11][11], ships ship){
                 return 0;
             }
             //check if there is a ship near the one you are trying to put
-            else if(board[ship.y - 1][ship.x] == 'X' || board[ship.y + 1][ship.x] == 'X' || board[ship.y][ship.x - 1] == 'X' || board[ship.y][ship.x + 1] == 'X'){
+            else if(board[ship.y - 1][ship.x] == 'X' || 
+                    board[ship.y + 1][ship.x] == 'X' || 
+                    board[ship.y][ship.x - 1] == 'X' || 
+                    board[ship.y][ship.x + 1] == 'X' ||
+                    board[ship.y - 1][ship.x - 1] == 'X' ||
+                    board[ship.y - 1][ship.x + 1] == 'X' ||
+                    board[ship.y + 1][ship.x - 1] == 'X' ||
+                    board[ship.y + 1][ship.x + 1] == 'X' 
+                    ){
                  printf("There is a ship near the one you are trying to put right now, try again!\n");
                 
                  return 0;
@@ -56,7 +64,7 @@ int validation_check(char board[11][11], ships ship){
                     case 'U':
                         //this checks if a ship is too big and will go out of the board
                         if(ship.y - ship.size > 0){
-                            if(board[ship.x + 1][ship.y + 1] == 'X' || board[ship.x - 1][ship.y + 1] == 'X' || board[ship.x - 1][ship.y - ship.size] == 'X' || board[ship.x + 1][ship.y - ship.size] == 'X'){
+                            if(board[ship.y + 1][ship.x + 1] == 'X' || board[ship.y + 1][ship.x - 1] == 'X' || board[ship.y - ship.size][ship.x - 1] == 'X' || board[ship.y - ship.size][ship.x + 1] == 'X'){
                                 printf("There is a ship near the one you are trying to put right now, try again!\n");
                                 return 0;
                             }else{
@@ -70,7 +78,7 @@ int validation_check(char board[11][11], ships ship){
                             }
                         }else{
                             
-                            printf("Ship is too big to put it here!\n");
+                            printf("\nShip is too big to put it here!\n");
                             return 0;
             
                         }  
@@ -85,7 +93,7 @@ int validation_check(char board[11][11], ships ship){
                     //this checks if a ship is too big and will go out of the board
                         if(ship.y + ship.size <= 11){
                             //this checks if there is ship everytime we go to put a new 1 from the current ship
-                            if(board[ship.x + 1][ship.y - 1] == 'X' || board[ship.x - 1][ship.y - 1] == 'X' || board[ship.x - 1][ship.y + ship.size] == 'X' || board[ship.x + 1][ship.y + ship.size] == 'X'){
+                            if(board[ship.y - 1][ship.x + 1] == 'X' || board[ship.y - 1][ship.x - 1] == 'X' || board[ship.y + ship.size][ship.x - 1] == 'X' || board[ship.y + ship.size][ship.x + 1] == 'X'){
                                 printf("There is a ship near the one you are trying to put right now, try again!\n");
                                 return 0;
                             }else{
@@ -98,7 +106,7 @@ int validation_check(char board[11][11], ships ship){
                                 }
                             }
                         }else{
-                            printf("Ship is too big to put it here!\n");
+                            printf("\nShip is too big to put it here!\n");
                             return 0;
 
                         }
@@ -110,7 +118,7 @@ int validation_check(char board[11][11], ships ship){
                         
 
                         if(ship.x + ship.size <= 11){
-                            if(board[ship.x - 1][ship.y + 1] == 'X' || board[ship.x - 1][ship.y - 1] == 'X' || board[ship.x + ship.size][ship.y - 1] == 'X' || board[ship.x + ship.size][ship.y + 1] == 'X'){
+                            if(board[ship.y + 1][ship.x - 1] == 'X' || board[ship.y - 1][ship.x - 1] == 'X' || board[ship.y - 1][ship.x + ship.size] == 'X' || board[ship.y + 1][ship.x + ship.size] == 'X'){
                                 printf("There is a ship near the one you are trying to put right now, try again!\n");
                                 return 0;
                             }else{
@@ -125,7 +133,7 @@ int validation_check(char board[11][11], ships ship){
                                 }
                             } 
                         }else{
-                            printf("Ship is too big to put it here!\n");
+                            printf("\nShip is too big to put it here!\n");
                             return 0;
                    
                         }      
@@ -136,7 +144,7 @@ int validation_check(char board[11][11], ships ship){
 
                     
                         if(ship.x - ship.size > 0){
-                            if(board[ship.x + 1][ship.y + 1] == 'X' || board[ship.x + 1][ship.y - 1] == 'X' || board[ship.x - ship.size][ship.y - 1] == 'X' || board[ship.x - ship.size][ship.y + 1] == 'X'){
+                            if(board[ship.y + 1][ship.x + 1] == 'X' || board[ship.y - 1][ship.x + 1] == 'X' || board[ship.y - 1][ship.x - ship.size] == 'X' || board[ship.y + 1][ship.x - ship.size] == 'X'){
                                 printf("There is a ship near the one you are trying to put right now, try again!\n");
                                 return 0;
                             }else{
@@ -151,12 +159,15 @@ int validation_check(char board[11][11], ships ship){
                             }
                         }else{
                             
-                            printf("Ship is too big to put it here!\n");
+                            printf("\nShip is too big to put it here!\n");
                             return 0;
                     
                         }
-                        break;
+                        break; 
 
+                    default: 
+                        printf("\nInvalid direction!\n");
+                        return 0;
                 }
                 return 1;
                 

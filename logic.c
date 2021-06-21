@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "configurations.h"
 #include "user_insert_ships.h"
 
 struct player
@@ -165,19 +164,21 @@ int main()
         
     };
 
-    print_config(board, 1);
+    //print_config(board, 1);
 
     //char turns[100];
     struct player player1;
     struct player player2;
-    int game = start_game(&player1, &player2);
+    //int game = start_game(&player1, &player2);
     //printf("%s, %s", player1.name, player2.name);
 
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
-    int str_succ = strike(&player1, &player2/*&turns*/);
-    strike_success(str_succ, &player1, &player2);
+    //int str_succ = strike(&player1, &player2/*&turns*/);
+    //strike_success(str_succ, &player1, &player2);
 
     ships ship;
+
+    insert_ships(board);
 
     return 0;
 }
