@@ -108,13 +108,17 @@ int strike(struct player_t* player1, struct player_t* player2)
     int turn_counter = 0;
 
     struct player_t* turn = malloc(sizeof(struct player_t));
+    struct player_t* opponent = malloc(sizeof(struct player_t));
     if(counter % 2 == 0){
         strcpy(turn->name, player2->name);
+        strcpy(opponent->name, player1->name);
         turn_counter = player2_turns;
+
         //strcpy(turn->board, player2->board);
         //puts(turn->name);
    }else{
         strcpy(turn->name, player1->name);
+        strcpy(opponent->name, player2->name);
         turn_counter = player1_turns;
         //strcpy(turn->board, player1->board);
    }
@@ -185,6 +189,16 @@ void strike_success(int success, struct player_t* player1, struct player_t* play
     }
 }
 
+void define_board(struct player_t* player, char board[11][11])
+{
+    for(int i = 0; i < 12; i++)
+    {
+        for(int k = 0; k < 12; k++){
+            player->board[i][k] = board[i][k];
+        }
+    }
+}
+
 int main()
 {
     char board[11][11] = {
@@ -206,7 +220,10 @@ int main()
 
     char turns[100];
     struct player_t player1;
+    define_board(&player1, board);
     struct player_t player2;
+    define_board(&player2, board);
+    
     int game = start_game(&player1, &player2);
     // printf("%s, %s", player1.name, player2.name); 
 
