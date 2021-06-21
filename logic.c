@@ -121,7 +121,7 @@ void previous_strikes(struct player_t* player)
     printf("%s, your previous guesses are:\n", player->name);
     for(int i = 0; i < turn_counter; i++){
         for(int j = 0; j < 4; j++){
-            player->turns[i][j];
+            printf("%s", player->turns[i][j]);
         }
         putchar('\n');
     }
