@@ -9,28 +9,28 @@ int remaining_ships = 10;
 int what_to_do_next = 0;
 
 int edit_ships(char board[11][11], ships ship[10]){
-    // int x = 0;
-    // int y = 0;
-    // char dir[2];
-    // int size = 0;
+    int x = 0;
+    int y = 0;
+    char dir[2];
+    int size = 0;
 
-    // printf("\nWhich ship do you want to edit? Please give its coordinates, direction and size\n");
-    // printf("X: ");
-    // scanf("%d", &x);
-    // printf("Y: ");
-    // scanf("%d", &y);
-    // printf("Direction: ");
-    // scanf("%s", &dir);
-    // printf("Choose Size:\n1. Small (2 boxes)\n2. Medium (3 boxes)\n3. Large (4 boxes)\n4. Cruiser (6 boxes)\n");
-    // scanf("%d", &size);
+    printf("\nWhich ship do you want to edit? Please give its coordinates, direction and size\n");
+    printf("X: ");
+    scanf("%d", &x);
+    printf("Y: ");
+    scanf("%d", &y);
+    printf("Direction: ");
+    scanf("%s", &dir);
+    printf("Choose Size:\n1. Small (2 boxes)\n2. Medium (3 boxes)\n3. Large (4 boxes)\n4. Cruiser (6 boxes)\n");
+    scanf("%d", &size);
 
-    // switch(size){
-    //     case '1':
-    //         for(int i = 0; i < size; i++){
-    //                 board[y - i][x] = 'O';
+    switch(size){
+        case '1':
+            for(int i = 0; i < size; i++){
+                    board[y - i][x] = 'O';
 
-    //             } break;
-    // }
+                } break;
+    }
 }
 
 int insert_ships(char board[11][11]){    
@@ -39,6 +39,7 @@ int insert_ships(char board[11][11]){
 
     //printf("\nNow its time to put your ships on the board!\n");
     
+
     for(int i = 0; i < 11; i++){
         if(remaining_ships == 0){
             printf("\nYou have put all of your ships on the board.");
@@ -124,4 +125,6 @@ int insert_ships(char board[11][11]){
 
 
     }
+
+    return 17;
 }
