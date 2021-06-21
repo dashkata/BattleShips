@@ -34,10 +34,7 @@ int start_game(struct player_t* player1, struct player_t* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    printf("%s place your board:", player1->name);
-                    insert_ships(player1->board);
-                    printf("%s place your board:", player2->name);
-                    insert_ships(player2->board);
+                    // sam gi podrejda //insert_ship();
                     break;
                 case 2: 
                     // random karta - chocho
@@ -57,8 +54,7 @@ int start_game(struct player_t* player1, struct player_t* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    printf("%s place your board:", player1->name);
-                    insert_ships(player1->board);
+                    // sam gi podrejda // insert_ship();
                     break;
                 case 2: 
                     // random karta - chocho
@@ -204,13 +200,14 @@ int main()
 
     //print_config(board, 1);
 
+    char turns[100];
     struct player_t player1;
     struct player_t player2;
     int game = start_game(&player1, &player2);
-    //printf("%s, %s", player1.name, player2.name);
+    // printf("%s, %s", player1.name, player2.name);
 
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
-    int str_succ = strike(&player1, &player2);
+    int str_succ = strike(&player1, &player2/*&turns*/);
     strike_success(str_succ, &player1, &player2);
 
     ships ship;
