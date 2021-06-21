@@ -14,6 +14,26 @@ int counter = 1;
 int player1_turns = 0;
 int player2_turns = 0;
 
+void define_board(struct player_t* player, char board[11][11])
+{
+    for(int i = 0; i < 12; i++)
+    {
+        for(int k = 0; k < 12; k++){
+            player->board[i][k] = board[i][k];
+        }
+    }
+}
+
+void work_on_board(struct player_t* change, struct player_t* changer)
+{
+    for(int i = 0; i < 12; i++)
+    {
+        for(int k = 0; k < 12; k++){
+            change->board[i][k] = changer->board[i][k];
+        }
+    }
+}
+
 int start_game(struct player_t* player1, struct player_t* player2)
 {
     int game_type = 0;
@@ -34,9 +54,9 @@ int start_game(struct player_t* player1, struct player_t* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    printf("%s's board:", player1->name);
+                    printf("\n%s's board:\n", player1->name);
                     insert_ships(player1->board);
-                    printf("%s's board", player2->name);
+                    printf("\n%s's board\n", player2->name);
                     insert_ships(player2->board);
                     break;
                 case 2: 
@@ -57,7 +77,7 @@ int start_game(struct player_t* player1, struct player_t* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    printf("%s's board:", player1->name);
+                    printf("\n%s's board:\n", player1->name);
                     insert_ships(player1->board);
                     break;
                 case 2: 
@@ -113,14 +133,14 @@ int strike(struct player_t* player1, struct player_t* player2)
         strcpy(turn->name, player2->name);
         strcpy(opponent->name, player1->name);
         turn_counter = player2_turns;
-
-        //strcpy(turn->board, player2->board);
-        //puts(turn->name);
+        work_on_board(turn, player2);
+        work_on_board(opponent, player1);
    }else{
         strcpy(turn->name, player1->name);
         strcpy(opponent->name, player2->name);
         turn_counter = player1_turns;
-        //strcpy(turn->board, player1->board);
+        work_on_board(turn, player1);
+        work_on_board(opponent, player2);
    }
 
 
@@ -147,7 +167,7 @@ int strike(struct player_t* player1, struct player_t* player2)
                         turn->turns[turn_counter][i] = shot[i];
                         printf("%c", turn->turns[turn_counter][i]);
                     }
-                    printf("%s", turn->turns[1][4]);
+                    printf("%s", turn->turns[1]);
                     break;
                 case 2: //use the previous box you shot at and choose a direction to go for
                     printf("OK, your previous shot was at neshto.\nChoose a direction to shoot! (Type L for left, R for right, U for up and D for down)\n");
@@ -189,15 +209,7 @@ void strike_success(int success, struct player_t* player1, struct player_t* play
     }
 }
 
-void define_board(struct player_t* player, char board[11][11])
-{
-    for(int i = 0; i < 12; i++)
-    {
-        for(int k = 0; k < 12; k++){
-            player->board[i][k] = board[i][k];
-        }
-    }
-}
+
 
 int main()
 {
