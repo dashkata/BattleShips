@@ -5,8 +5,9 @@ int count_small = 4;
 int count_medium = 3;
 int count_large = 2;
 int count_cruiser = 1;
-int remaining_ships = 10;
+// int remaining_ships = 10;
 int what_to_do_next = 0;
+int count_players = 0;
 
 int edit_ships(char board[11][11]){
     int x = 0;
@@ -154,19 +155,21 @@ int edit_ships(char board[11][11]){
 }
 
 int insert_ships(char board[11][11]){    
-    
+
     ships ship[10];
+    int remaining_ships = 10;
 
     //printf("\nNow its time to put your ships on the board!\n");
     
-
-    for(int i = 0; i < 11; i++){
+    here:
+    flag:
+    for(int i = 0; i < 12; i++){
         if(remaining_ships == 0){
-            printf("\nYou have put all of your ships on the board.");
+            printf("\nYou have put all of your ships on the board.\nNow its your opponent's turn to put ships.\n");
             return 0;
         }
 
-        here:
+        // here:
         printf("\nPlease now choose the size of the ship you want to put on the board:\n1. Small (2 boxes)\n2. Medium (3 boxes)\n3. Large (4 boxes)\n4. Cruiser (6 boxes)\n");
         scanf("%d", &ship[i].size);
         //printf("ship[i].size = %d\n", ship[i].size);
@@ -178,42 +181,42 @@ int insert_ships(char board[11][11]){
                     count_small = count_small - 1;
                     remaining_ships =  remaining_ships - 1;
                 } else {
-                    printf("You don't have more small ships to put!\n");
+                    printf("\nYou don't have more small ships to put!\n");
                     goto here;
                 } break;
 
             case 2:
                 if(count_medium > 0){
-                    ship[i].size = 2;
+                    ship[i].size = 3;
                     count_medium = count_medium - 1;
                     remaining_ships =  remaining_ships - 1;
                 } else {
-                    printf("You don't have more medium ships to put!\n");
+                    printf("\nYou don't have more medium ships to put!\n");
                     goto here;
                 } break;
 
             case 3:
                 if(count_large > 0){
-                    ship[i].size = 2;
+                    ship[i].size = 4;
                     count_large = count_large - 1;
                     remaining_ships =  remaining_ships - 1;
                 } else {
-                    printf("You don't have more large ships to put!\n");
+                    printf("\nYou don't have more large ships to put!\n");
                     goto here;
                 } break;
             
             case 4:
                 if(count_cruiser > 0){
-                    ship[i].size = 2;
+                    ship[i].size = 6;
                     count_cruiser = count_cruiser - 1;
                     remaining_ships =  remaining_ships - 1;
                 } else {
-                    printf("You don't have more cruiser ships to put!\n");
+                    printf("\nYou don't have more cruiser ships to put!\n");
                     goto here;
                 } break;
 
             default: 
-                printf("You have chosen an invalid option! Please choose another...");
+                printf("\nYou have chosen an invalid option! Please choose another...\n");
                 goto here;
         }
 
@@ -230,22 +233,59 @@ int insert_ships(char board[11][11]){
         printf("Direction: ");
         scanf("%s", &ship[i].dir);   
 
-        printf("\nWhat do you want to do next?\n1. Put a new ship\n2. Edit the position of your ships\n3. See your board\n");
-        scanf("%d", &what_to_do_next);
-
-        if(what_to_do_next == 1){
-            if(validation_check(board, ship[i]) == 1){
+        if(validation_check(board, ship[i]) == 1){
+                printf("\nresult of validation check: %d\n", validation_check(board, ship[i]));
                 set_ship(board, ship[i]);
+
+                valid_choice:
+                printf("\nWhat do you want to do next?\n1. Put a new ship\n2. Edit the position of your ships\n3. See your board\n");
+                scanf("%d", &what_to_do_next);
+
+                if(what_to_do_next == 1){
+                    
+                    goto flag;
+
+                } else if(what_to_do_next == 2){
+
+                    edit_ships(board);
+
+                } else if(what_to_do_next == 3){
+
+                    // set_ship(board, ship[i]);
+                    print_board(board);
+
+                } else {
+                    printf("Invalid choice of next turn, please choose a valid one!");
+                    goto valid_choice;
+                }
+        } else {
+            printf("\ninvalid valid check!\n");
+            switch(ship[i].size){
+                case 2:
+                    count_small++;
+                    remaining_ships++;
+                    break;
+
+                case 3:
+                    count_medium++;
+                    remaining_ships++;
+                    break;
+
+                case 4:
+                    count_large++;
+                    remaining_ships++;
+                    break;
+
+                case 6:
+                    count_cruiser++;
+                    remaining_ships++;
+                    break;
             }
-        } else if(what_to_do_next == 2){
-            edit_ships(board);
-        } else if(what_to_do_next == 3){
-            set_ship(board, ship[i]);
-            print_board(board);
+
         }
 
 
     }
 
-    return 17;
+    return 5;
 }
