@@ -34,7 +34,10 @@ int start_game(struct player_t* player1, struct player_t* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    // sam gi podrejda //insert_ship();
+                    printf("%s's board:", player1->name);
+                    insert_ships(player1->board);
+                    printf("%s's board", player2->name);
+                    insert_ships(player2->board);
                     break;
                 case 2: 
                     // random karta - chocho
@@ -54,7 +57,8 @@ int start_game(struct player_t* player1, struct player_t* player2)
             scanf("%d", &board);
             switch(board){
                 case 1: 
-                    // sam gi podrejda // insert_ship();
+                    printf("%s's board:", player1->name);
+                    insert_ships(player1->board);
                     break;
                 case 2: 
                     // random karta - chocho
