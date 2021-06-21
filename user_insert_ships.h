@@ -8,29 +8,149 @@ int count_cruiser = 1;
 int remaining_ships = 10;
 int what_to_do_next = 0;
 
-int edit_ships(char board[11][11], ships ship[10]){
+int edit_ships(char board[11][11]){
     int x = 0;
     int y = 0;
     char dir[2];
-    int size = 0;
+    int size = 0;   
 
-    printf("\nWhich ship do you want to edit? Please give its coordinates, direction and size\n");
+    printf("\nWhich ship do you want to edit? Please give its coordinates, direction and size.\n");
     printf("X: ");
     scanf("%d", &x);
     printf("Y: ");
     scanf("%d", &y);
     printf("Direction: ");
     scanf("%s", &dir);
-    printf("Choose Size:\n1. Small (2 boxes)\n2. Medium (3 boxes)\n3. Large (4 boxes)\n4. Cruiser (6 boxes)\n");
+    printf("Choose the size of the ship you want to edit:\n1. Small (2 boxes)\n2. Medium (3 boxes)\n3. Large (4 boxes)\n4. Cruiser (6 boxes)\n");
     scanf("%d", &size);
 
     switch(size){
         case '1':
-            for(int i = 0; i < size; i++){
-                    board[y - i][x] = 'O';
+            size = 2;
+            switch(dir[2]){
+                case 'U':
+                    for(int i = 0; i < size; i++){
+                        board[y - i][x] = 'O';
 
-                } break;
+                    } break;
+
+                case 'D':
+                    for(int i = 0; i < size; i++){
+                            
+                        board[y + i][x] = 'O';
+                    }break;
+
+                case 'R':
+                    for(int i = 0; i < size; i++){
+                                         
+                    board[y][x + i] = 'O';
+                    }break;
+                
+                case 'L':
+                    for(int i = 0; i < size; i++){
+
+                    board[y][x - i] = 'O';
+                    }break;
+            }
+
+
+            break;
+        
+        case '2':
+            size = 3;
+            switch(dir[2]){
+                case 'U':
+                    for(int i = 0; i < size; i++){
+                        board[y - i][x] = 'O';
+
+                    } break;
+
+                case 'D':
+                    for(int i = 0; i < size; i++){
+                            
+                        board[y + i][x] = 'O';
+                    }break;
+
+                case 'R':
+                    for(int i = 0; i < size; i++){
+                                         
+                    board[y][x + i] = 'O';
+                    }break;
+                
+                case 'L':
+                    for(int i = 0; i < size; i++){
+
+                    board[y][x - i] = 'O';
+                    }break;
+            }
+
+
+            break;
+
+        case '3':
+            size = 4;
+            switch(dir[2]){
+                case 'U':
+                    for(int i = 0; i < size; i++){
+                        board[y - i][x] = 'O';
+
+                    } break;
+
+                case 'D':
+                    for(int i = 0; i < size; i++){
+                            
+                        board[y + i][x] = 'O';
+                    }break;
+
+                case 'R':
+                    for(int i = 0; i < size; i++){
+                                         
+                    board[y][x + i] = 'O';
+                    }break;
+                
+                case 'L':
+                    for(int i = 0; i < size; i++){
+
+                    board[y][x - i] = 'O';
+                    }break;
+            }
+
+
+            break;
+
+        case '4':
+            size = 6;
+            switch(dir[2]){
+                case 'U':
+                    for(int i = 0; i < size; i++){
+                        board[y - i][x] = 'O';
+
+                    } break;
+
+                case 'D':
+                    for(int i = 0; i < size; i++){
+                            
+                        board[y + i][x] = 'O';
+                    }break;
+
+                case 'R':
+                    for(int i = 0; i < size; i++){
+                                         
+                    board[y][x + i] = 'O';
+                    }break;
+                
+                case 'L':
+                    for(int i = 0; i < size; i++){
+
+                    board[y][x - i] = 'O';
+                    }break;
+            }
+
+
+            break;
     }
+
+    print_board(board);
 }
 
 int insert_ships(char board[11][11]){    
@@ -118,8 +238,9 @@ int insert_ships(char board[11][11]){
                 set_ship(board, ship[i]);
             }
         } else if(what_to_do_next == 2){
-            edit_ships(board, ship);
+            edit_ships(board);
         } else if(what_to_do_next == 3){
+            set_ship(board, ship[i]);
             print_board(board);
         }
 
