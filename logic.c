@@ -165,7 +165,11 @@ int strike(struct player_t* player1, struct player_t* player2)
                     scanf("%s", shot);
                     for(int i = 0; i < 4; i++){
                         turn->turns[turn_counter][i] = shot[i];
-                        printf("%c", turn->turns[turn_counter][i]);
+                        //printf("%c", turn->turns[turn_counter][i]);
+                        if(opponent->board[turn_counter][i] == 'X'){
+                            opponent->board[turn_counter][i] = 'H'; // H for Hit
+                            strike_success = 1;
+                        }
                     }
                     printf("%s", turn->turns[1]);
                     break;
@@ -185,8 +189,33 @@ int strike(struct player_t* player1, struct player_t* player2)
                  break;
     }
 
-    // ako opita e uspeshen strike_success = 1;
     return strike_success;
+}
+
+int submerged_ship(struct player_t* player)
+{
+    int submerged = 0;
+    for(int i = 0; i < 12; i++)
+    {
+        for(int k = 0; k < 12; k++){
+            if(player->board[i][k] == 'X'){
+                if( (player->board[i+1][k] == 'H' || player->board[i+1][k] == '0') &&
+                    (player->board[i+1][k+1] == 'H' || player->board[i+1][k+1] == '0') &&
+                    (player->board[i+1][k-1] == 'H' || player->board[i-1][k-1] == '0') &&
+                    (player->board[i-1][k] == 'H' || player->board[i-1][k] == '0') && 
+                    (player->board[i-1][k-1] == 'H' || player->board[i-1][k-1] == '0') &&
+                    (player->board[i-1][k+1] == 'H' || player->board[i-1][k+1] == '0') &&
+                    (player->board[i][k+1] == 'H' || player->board[i][k+1] == '0') &&
+                    (player->board[i][k-1] == 'H' || player->board[i-1][k-1] == '0') 
+                    )
+                {
+                    submerged = 1;
+                }
+            }
+        }
+    }
+
+    return submerged;
 }
 
 
@@ -194,12 +223,17 @@ void strike_success(int success, struct player_t* player1, struct player_t* play
 {
     if(success = 1){
         printf("\nGood job mate! You hit something and it's your turn again!\n");
-        // ako cql korab e potopen
-        // printf("That's not everything tho! Not only did you hit something but you submerged one of your opponent's ships!")
+        
         if(counter % 2 == 0){
             player2_turns++;
+            if(submerged_ship(player2)){
+                printf("That's not everything %s! Not only did you hit something but you submerged one of your opponent's ships!", player2->name);
+            }
         }else{
             player1_turns++;
+            if(submerged_ship(player1)){
+                printf("That's not everything %s! Not only did you hit something but you submerged one of your opponent's ships!", player1->name);
+            }
         }
         strike(player1, player2);
     }
@@ -240,7 +274,7 @@ int main()
     // printf("%s, %s", player1.name, player2.name); 
 
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
-    int str_succ = strike(&player1, &player2/*&turns*/);
+    int str_succ = strike(&player1, &player2);
     strike_success(str_succ, &player1, &player2);
 
     ships ship;
