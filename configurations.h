@@ -254,9 +254,12 @@ int configurations(char board[11][11], int config_number){
         file_selection(board, file);
 
     }else if(config_number == 2){
-         FILE *file = fopen("config2.txt", "r");
+        FILE *file = fopen("config2.txt", "r");
         file_selection(board, file);
 
+    }else if(config_number == 3){
+        FILE *file = fopen("config3.txt", "r");
+        file_selection(board, file);
     }
    
 
