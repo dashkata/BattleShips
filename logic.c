@@ -200,7 +200,6 @@ int main()
 
     //print_config(board, 1);
 
-<<<<<<< HEAD
     struct player_t player1;
     struct player_t player2;
     int game = start_game(&player1, &player2);
@@ -209,17 +208,6 @@ int main()
     // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
     int str_succ = strike(&player1, &player2);
     strike_success(str_succ, &player1, &player2);
-=======
-    //char turns[100];
-    struct player player1;
-    struct player player2;
-    //int game = start_game(&player1, &player2);
-    //printf("%s, %s", player1.name, player2.name);
-
-    // spored tipa igra da prenasochva kum hodovete suotvetno na igrachite ili igracha i random hod za bota
-    //int str_succ = strike(&player1, &player2/*&turns*/);
-    //strike_success(str_succ, &player1, &player2);
->>>>>>> 5acb24a8dca2df8bdbebd787401215f6e4e2ab29
 
     ships ship;
 
