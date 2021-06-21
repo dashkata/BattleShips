@@ -1,15 +1,51 @@
 #include <stdio.h>
 #include "configurations.h"
 
-int count_small = 4;
-int count_medium = 3;
-int count_large = 2;
-int count_cruiser = 1;
-// int remaining_ships = 10;
-int what_to_do_next = 0;
-int count_players = 0;
+// int count_small = 4;
+// int count_medium = 3;
+// int count_large = 2;
+// int count_cruiser = 1;
+// // int remaining_ships = 10;
+// int what_to_do_next = 0;
+// int count_players = 0;
 
-int edit_ships(char board[11][11]){
+// int map_generator(){
+//     int i;
+//     time_t t;
+    
+//     char board[11][11] = {
+//         {' ','A','B','C','D','E','F','G','H','I','J'},
+//         {'1','O','O','O','O','O','O','O','O','O','O'},
+//         {'2','O','O','O','O','O','O','O','O','O','O'},
+//         {'3','O','O','O','O','O','O','O','O','O','O'},
+//         {'4','O','O','O','O','O','O','O','O','O','O'},
+//         {'5','O','O','O','O','O','O','O','O','O','O'},
+//         {'6','O','O','O','O','O','O','O','O','O','O'},
+//         {'7','O','O','O','O','O','O','O','O','O','O'},
+//         {'8','O','O','O','O','O','O','O','O','O','O'},
+//         {'9','O','O','O','O','O','O','O','O','O','O'},
+//         {'0','O','O','O','O','O','O','O','O','O','O'},
+        
+//     };
+    
+   
+   
+//    srand((unsigned) time(&t));
+   
+//      i =  rand() % 4;
+//      while (i == 0)
+//      {
+//          i = rand() % 4;
+//      }
+     
+//     printf("%d\n", i);
+//      print_config(board,i);
+   
+   
+//    return(0);
+// }
+
+void edit_ships(char board[11][11]){
     int x = 0;
     int y = 0;
     char dir[2];
@@ -26,9 +62,9 @@ int edit_ships(char board[11][11]){
     scanf("%d", &size);
 
     switch(size){
-        case '1':
+        case 1:
             size = 2;
-            switch(dir[2]){
+            switch(dir[0]){
                 case 'U':
                     for(int i = 0; i < size; i++){
                         board[y - i][x] = 'O';
@@ -44,7 +80,8 @@ int edit_ships(char board[11][11]){
                 case 'R':
                     for(int i = 0; i < size; i++){
                                          
-                    board[y][x + i] = 'O';
+                        board[y][x + i] = 'O';
+                        
                     }break;
                 
                 case 'L':
@@ -57,9 +94,9 @@ int edit_ships(char board[11][11]){
 
             break;
         
-        case '2':
+        case 2:
             size = 3;
-            switch(dir[2]){
+            switch(dir[0]){
                 case 'U':
                     for(int i = 0; i < size; i++){
                         board[y - i][x] = 'O';
@@ -76,6 +113,7 @@ int edit_ships(char board[11][11]){
                     for(int i = 0; i < size; i++){
                                          
                     board[y][x + i] = 'O';
+                    // printf(board[y][x + i]);
                     }break;
                 
                 case 'L':
@@ -88,9 +126,9 @@ int edit_ships(char board[11][11]){
 
             break;
 
-        case '3':
+        case 3:
             size = 4;
-            switch(dir[2]){
+            switch(dir[0]){
                 case 'U':
                     for(int i = 0; i < size; i++){
                         board[y - i][x] = 'O';
@@ -119,9 +157,9 @@ int edit_ships(char board[11][11]){
 
             break;
 
-        case '4':
+        case 4:
             size = 6;
-            switch(dir[2]){
+            switch(dir[0]){
                 case 'U':
                     for(int i = 0; i < size; i++){
                         board[y - i][x] = 'O';
@@ -152,27 +190,30 @@ int edit_ships(char board[11][11]){
     }
 
     print_board(board);
+
 }
 
 int insert_ships(char board[11][11]){    
 
     ships ship[10];
+    int count_small = 4;
+    int count_medium = 3;
+    int count_large = 2;
+    int count_cruiser = 1;
     int remaining_ships = 10;
-
-    //printf("\nNow its time to put your ships on the board!\n");
+    int what_to_do_next = 0;
+    int count_players = 0;
     
     here:
     flag:
     for(int i = 0; i < 12; i++){
         if(remaining_ships == 0){
-            printf("\nYou have put all of your ships on the board.\nNow its your opponent's turn to put ships.\n");
+            printf("\nYou have put all of your ships on the board.\n");
             return 0;
         }
 
-        // here:
         printf("\nPlease now choose the size of the ship you want to put on the board:\n1. Small (2 boxes)\n2. Medium (3 boxes)\n3. Large (4 boxes)\n4. Cruiser (6 boxes)\n");
         scanf("%d", &ship[i].size);
-        //printf("ship[i].size = %d\n", ship[i].size);
 
         switch(ship[i].size){
             case 1:
@@ -220,11 +261,6 @@ int insert_ships(char board[11][11]){
                 goto here;
         }
 
-        // printf("\n%d %d %d\n", ship[i].size, count_small, remaining_ships);
-        // printf("%d %d %d\n", ship[i].size, count_medium, remaining_ships);
-        // printf("%d %d %d\n", ship[i].size, count_large, remaining_ships);
-        // printf("%d %d %d\n", ship[i].size, count_cruiser, remaining_ships);
-
         printf("\nOk! Now please give the coordinates and the direction you want to put the ship on:\n");
         printf("X: ");
         scanf("%d", &ship[i].x);
@@ -234,7 +270,6 @@ int insert_ships(char board[11][11]){
         scanf("%s", &ship[i].dir);   
 
         if(validation_check(board, ship[i]) == 1){
-                printf("\nresult of validation check: %d\n", validation_check(board, ship[i]));
                 set_ship(board, ship[i]);
 
                 valid_choice:
@@ -247,7 +282,30 @@ int insert_ships(char board[11][11]){
 
                 } else if(what_to_do_next == 2){
 
+                    print_board(board);
                     edit_ships(board);
+
+                    switch(ship[i].size){
+                        case 2:
+                            count_small++;
+                            remaining_ships++;
+                            break;
+
+                        case 3:
+                            count_medium++;
+                            remaining_ships++;
+                            break;
+
+                        case 4:
+                            count_large++;
+                            remaining_ships++;
+                            break;
+
+                        case 6:
+                            count_cruiser++;
+                            remaining_ships++;
+                            break;
+            }
 
                 } else if(what_to_do_next == 3){
 
@@ -259,7 +317,6 @@ int insert_ships(char board[11][11]){
                     goto valid_choice;
                 }
         } else {
-            printf("\ninvalid valid check!\n");
             switch(ship[i].size){
                 case 2:
                     count_small++;
@@ -281,10 +338,7 @@ int insert_ships(char board[11][11]){
                     remaining_ships++;
                     break;
             }
-
         }
-
-
     }
 
     return 5;
