@@ -216,7 +216,7 @@ int main()
 
     ships ship;
 
-    insert_ships(board);
+    // insert_ships(board);
 
     return 0;
 }

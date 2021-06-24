@@ -1,4 +1,6 @@
 #include <stdio.h>
+#ifndef CONFIGURATIONS_H
+    #define CONFIGURATIONS_H
 
 struct ship_t{
     int x; 
@@ -274,3 +276,4 @@ void print_config(char board[11][11], int config_number){
     configurations(board, config_number);
     print_board(board);
 }
+#endif
