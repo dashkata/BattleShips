@@ -39,3 +39,19 @@ int map_generator(struct player_t* player){
    
    return(0);
 }
+
+
+
+char bot_strikes_and_random_ship_placement(struct player_t *player){
+    int x;
+    char y;
+     time_t t;
+
+     srand((unsigned) time(&t)); 
+     x = rand() % (10 + 1 - 1) + 1;
+
+     y = rand() % (74 + 1 - 65) + 65;
+     
+     
+
+}
