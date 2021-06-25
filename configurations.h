@@ -1,4 +1,6 @@
 #include <stdio.h>
+#ifndef CONFIGURATIONS_H
+    #define CONFIGURATIONS_H
 
 struct ship_t{
     int x; 
@@ -37,7 +39,7 @@ int validation_check(char board[11][11], ships ship){
     //check if size is valid
     if(ship.size == 2 || ship.size == 3 || ship.size == 4 || ship.size == 6){
         
-        // if( ship.x != 1 || ship.y != 1 ){
+        
             //check if there is a ship (a 1) set to the coordinates
             if(board[ship.y][ship.x] != 'O'){
                 printf("There is already a ship on theese coordinates\n");
@@ -274,3 +276,4 @@ void print_config(char board[11][11], int config_number){
     configurations(board, config_number);
     print_board(board);
 }
+#endif
