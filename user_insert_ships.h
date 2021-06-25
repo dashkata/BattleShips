@@ -56,12 +56,12 @@ void edit_ships(char board[11][11]){
                         board[y][x - i] = 'O';
 
                     } break;
-            }
 
+            }
 
             break;
         
-        case 2:
+        case 2: 
 
             size = 3;
 
@@ -98,8 +98,8 @@ void edit_ships(char board[11][11]){
                         board[y][x - i] = 'O';
 
                     } break;
-            }
 
+            }
 
             break;
 
@@ -140,8 +140,8 @@ void edit_ships(char board[11][11]){
                         board[y][x - i] = 'O';
 
                     } break;
-            }
 
+            }
 
             break;
 
@@ -182,10 +182,11 @@ void edit_ships(char board[11][11]){
                         board[y][x - i] = 'O';
                         
                     } break;
+
             }
 
-
             break;
+            
     }
 
     print_board(board);
@@ -201,7 +202,6 @@ int insert_ships(char board[11][11]){
     int count_cruiser = 1;
     int remaining_ships = 10;
     int what_to_do_next = 0;
-    int count_players = 0;
     
     here:
     flag:
@@ -262,6 +262,7 @@ int insert_ships(char board[11][11]){
                 } break;
             
             case 4:
+
                 if(count_cruiser > 0){
 
                     ship[i].size = 6;
@@ -308,6 +309,7 @@ int insert_ships(char board[11][11]){
                     edit_ships(board);
 
                     switch(ship[i].size){
+
                         case 2:
 
                             count_small++;
@@ -331,6 +333,7 @@ int insert_ships(char board[11][11]){
                             count_cruiser++;
                             remaining_ships++;
                             break;
+
             }
 
                 } else if(what_to_do_next == 3){
@@ -343,8 +346,11 @@ int insert_ships(char board[11][11]){
                     goto valid_choice;
 
                 }
+
         } else {
+
             switch(ship[i].size){
+
                 case 2:
 
                     count_small++;
@@ -368,6 +374,7 @@ int insert_ships(char board[11][11]){
                     count_cruiser++;
                     remaining_ships++;
                     break;
+
             }
         }
     }
